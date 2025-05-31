@@ -1,7 +1,7 @@
-EXP NO:6 C PROGRAM PRINT THE LOWERCASE ENGLISH WORD CORRESPONDING TO THE NUMBER
-Aim:
+# EXP NO:6 C PROGRAM PRINT THE LOWERCASE ENGLISH WORD CORRESPONDING TO THE NUMBER
+# Aim:
 To write a C program print the lowercase English word corresponding to the number
-Algorithm:
+# Algorithm:
 1.	Start
 - Initialize an integer variable n.
 2.	Input Validation
@@ -14,28 +14,50 @@ Algorithm:
 -	Default: Print "Greater than 13"
 4.	Exit the program.
  
-Program:
+# Program:
 
-//type your code here
+```
+#include <stdio.h>
+int main() {
+    int num;
+    printf("Enter a number between 1 and 9: ");
+    scanf("%d", &num);
+
+switch(num) {
+    case 1: printf("one\n"); break;
+    case 2: printf("two\n"); break;
+    case 3: printf("three\n"); break;
+    case 4: printf("four\n"); break;
+    case 5: printf("five\n"); break;
+    case 6: printf("six\n"); break;
+    case 7: printf("seven\n"); break;
+    case 8: printf("eight\n"); break;
+    case 9: printf("nine\n"); break;
+    default: printf("Invalid number!\n");
+}
+return 0;
+}
+```
 
 
 
 
-Output:
+# Output:
 
 
-//paste your output here
-
-
-
+![image](https://github.com/user-attachments/assets/e5007744-335b-41fe-88e8-ee7243434446)
 
 
 
-Result:
+
+
+
+
+# Result:
 Thus, the program is verified successfully
  
-EXP NO:7 C PROGRAM TO PRINT TEN SPACE-SEPARATED INTEGERS     IN A SINGLE  LINE DENOTING THE FREQUENCY OF EACH DIGIT FROM 0 TO 3 .
-Aim:
+# EXP NO:7 C PROGRAM TO PRINT TEN SPACE-SEPARATED INTEGERS IN A SINGLE LINE DENOTING THE FREQUENCY OF EACH DIGIT FROM 0 TO 3 .
+# Aim:
 To write a C program to print ten space-separated integers in a single line denoting the frequency of each digit from 0 to 3.
 Algorithm:
 1.	Start
@@ -45,34 +67,57 @@ Algorithm:
 5.	Increment h to move to the next digit
 6.	End
  
-Program:
+# Program:
 
-//type your code here
+```
+#include <stdio.h>
+
+int main() {
+    int num, count[4] = {0};  
+
+printf("Enter an integer: ");
+scanf("%d", &num);
+
+while (num != 0) {
+    int digit = num % 10; 
+    if (digit >= 0 && digit <= 3) {
+        count[digit]++; 
+    }
+    num /= 10;  
+}
+
+for (int i = 0; i < 4; i++) {
+    printf("%d ", count[i]);
+}
+
+return 0;
+}
+```
 
 
 
 
-Output:
+# Output:
 
 
-//paste your output here
-
-
-
+![image](https://github.com/user-attachments/assets/8b8a0c9d-9e2f-44b6-88f3-8c2c04a4b558)
 
 
 
-Result:
+
+
+
+
+# Result:
 Thus, the program is verified successfully
 
-EXP NO:8 C PROGRAM TO PRINT ALL OF ITS PERMUTATIONS IN STRICT LEXICOGRAPHICAL ORDER.
-Aim:
+# EXP NO:8 C PROGRAM TO PRINT ALL OF ITS PERMUTATIONS IN STRICT LEXICOGRAPHICAL ORDER.
+# Aim:
 To write a C program to print all of its permutations in strict lexicographical order.
 
-Algorithm:
+# Algorithm:
 1.	Start
 2.	Declare variables s (pointer to an array of strings) and n (number of strings)
-
 3.	Memory Allocation
 Dynamically allocate memory for s to store an array of strings
 4.	Input
@@ -82,31 +127,78 @@ Read the number of strings n from the user Dynamically allocate memory for each 
 Free the memory allocated for each string in s Free the memory allocated for s
 7.	End
  
-Program:
+# Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+void swap(char *x, char *y) {
+    char temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+int compare(const void *a, const void *b) {
+    return (*(char *)a - *(char *)b);
+}
+
+void permute(char str[], int l, int r) {
+    if (l == r) {
+        printf("%s\n", str);  
+        return;
+    }
+
+    for (int i = l; i <= r; i++) {
+        int shouldSwap = 1;
+        for (int j = l; j < i; j++) {
+            if (str[j] == str[i]) {
+                shouldSwap = 0;
+                break;
+            }
+        }
+        if (!shouldSwap) continue;
+
+        swap(&str[l], &str[i]);         
+        permute(str, l + 1, r);         
+        swap(&str[l], &str[i]);       
+    }
+}
+
+int main() {
+    char str[100];
+    printf("Enter a string: ");
+    scanf("%s", str);
+    qsort(str, strlen(str), sizeof(char), compare);
+
+    printf("Lexicographical permutations:\n");
+    permute(str, 0, strlen(str) - 1);
+
+    return 0;
+}
+```
 
 
 
 
-Output:
+# Output:
 
-
-//paste your output here
-
-
+![image](https://github.com/user-attachments/assets/93ba613e-8021-4302-9bb0-b755794d909b)
 
 
 
 
-Result:
+
+
+
+# Result:
 Thus, the program is verified successfully
  
-EXP NO:9 C PROGRAM PRINT A PATTERN OF NUMBERS FROM 1 TO N AS
-SHOWN BELOW.
-Aim:
+# EXP NO:9 C PROGRAM PRINT A PATTERN OF NUMBERS FROM 1 TO N AS SHOWN BELOW.
+# Aim:
 To write a C program to print a pattern of numbers from 1 to n as shown below.
-Algorithm:
+# Algorithm:
 1.	Start
 2.	Declare integer variables n, i, j, min
 3.	Read the value of n from the user
@@ -115,33 +207,49 @@ Algorithm:
 6.	Calculate min as the minimum distance to the borders
 7.	End
  
-Program:
+# Program:
 
-//type your code here
+```
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+
+    for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= i; j++) {
+        printf("%d", j);
+    }
+    printf("\n");
+}
+return 0;
+}
+```
 
 
 
 
-Output:
+# Output:
 
 
-//paste your output here
-
-
-
+![image](https://github.com/user-attachments/assets/04beb7cd-c82f-4d51-b94a-0180a31ea0ce)
 
 
 
-Result:
+
+
+
+
+# Result:
 Thus, the program is verified successfully
 
-EXP NO:10 C PROGRAM TO FIND A SQUARE  OF NUMBER USING FUNCTION WITHOUT ARGUMENTS WITH RETURN TYPE
+# EXP NO:10 C PROGRAM TO FIND A SQUARE  OF NUMBER USING FUNCTION WITHOUT ARGUMENTS WITH RETURN TYPE
 
-Aim:
+# Aim:
 
 To write a C program that calculates the square of a number using a function that does not take any arguments, but returns the square of the number.
 
-Algorithm:
+# Algorithm:
 
 1.	Start.
 2.	Define a function square() with no parameters. This function will return an integer value.
@@ -154,24 +262,36 @@ o	Return the squared value.
 o	Call the square() function and display the result.
 5.	End.
 
-Program:
+# Program:
 
-//type your code here
+```
+#include <stdio.h>
+
+int square() { 
+    return 5 * 5;
+}
+
+int main() { 
+    printf("%d\n", square()); 
+    return 0; 
+}
+```
 
 
 
 
-Output:
+# Output:
 
 
-//paste your output here
-
-
-
+![image](https://github.com/user-attachments/assets/4d6c1ac0-1a49-4355-947c-e1ac01dea9a2)
 
 
 
-Result:
+
+
+
+
+# Result:
 Thus, the program is verified successfully
 
 
