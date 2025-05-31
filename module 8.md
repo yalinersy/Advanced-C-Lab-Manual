@@ -214,6 +214,7 @@ To write a C program to print a pattern of numbers from 1 to n as shown below.
 
 int main() {
     int n;
+    printf("Enter a number: ");
     scanf("%d", &n);
 
     for (int i = 1; i <= n; i++) {
